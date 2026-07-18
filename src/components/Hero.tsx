@@ -1,40 +1,38 @@
 "use client";
 
-import { Typewriter } from "react-simple-typewriter";
+
 import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center z-10 relative pointer-events-none">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="border border-green-500/30 bg-black/60 backdrop-blur-md p-8 md:p-12 rounded-lg shadow-[0_0_20px_rgba(34,197,94,0.1)] inline-block pointer-events-auto"
+    <div className="relative flex flex-col items-center justify-center min-h-[80vh] w-full text-center z-10 pointer-events-none rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.15)] my-8">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-green-400 mb-6 tracking-tight">
-          Hi, I'm Aniruddh.
+        <source src="/after.mp4" type="video/mp4" />
+      </video>
+      
+      {/* Overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+      {/* Text on top of video */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="z-10 px-4"
+      >
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          ANIRUDDH NALLI
         </h1>
-        <div className="text-xl md:text-2xl text-green-500/80 mb-6 font-mono h-8">
-          <Typewriter
-            words={[
-              "Electrical Engineer",
-              "Research Intern",
-              "Embedded Systems",
-              "FPGA",
-              "Space Technology"
-            ]}
-            loop={true}
-            cursor
-            cursorStyle="█"
-            typeSpeed={50}
-            deleteSpeed={30}
-            delaySpeed={2000}
-          />
-        </div>
-        <p className="text-green-600 font-mono text-sm uppercase tracking-widest max-w-md mx-auto">
-          Building the next generation of space technology, embedded systems, and robotics.
-        </p>
+        <h2 className="text-xl md:text-3xl text-green-400 font-mono tracking-[0.2em] font-medium drop-shadow-[0_0_10px_rgba(34,197,94,0.5)]">
+          ELECTRICAL ENGINEER
+        </h2>
       </motion.div>
     </div>
   );
