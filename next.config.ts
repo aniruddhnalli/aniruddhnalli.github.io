@@ -5,12 +5,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  eslint: {
-    dirs: ["src"],
-  },
-  typescript: {
-    tsconfigPath: "./tsconfig.json",
-  },
 };
 
 export default nextConfig;
