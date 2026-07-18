@@ -15,7 +15,7 @@ export async function GithubStats() {
   try {
     const headers = process.env.NEXT_PUBLIC_GITHUB_TOKEN
       ? { Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}` }
-      : {};
+      : undefined;
 
     const res = await fetch(`https://api.github.com/users/${username}`, { headers, next: { revalidate: 3600 } });
     if (!res.ok) throw new Error("Failed to fetch user");
