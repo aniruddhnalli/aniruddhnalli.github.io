@@ -13,17 +13,18 @@ export async function GithubStats() {
   let errorMsg = null;
 
   try {
-    const headers = process.env.NEXT_PUBLIC_GITHUB_TOKEN
-      ? { Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}` }
-      : undefined;
+    const headersObj: Record<string, string> = {};
+    if (process.env.NEXT_PUBLIC_GITHUB_TOKEN) {
+      headersObj.Authorization = `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
+    }
 
-    const res = await fetch(`https://api.github.com/users/${username}`, { headers, next: { revalidate: 3600 } });
+    const res = await fetch(`https://api.github.com/users/${username}`, { headers: headersObj, next: { revalidate: 3600 } });
     if (!res.ok) throw new Error("Failed to fetch user");
     const user = await res.json();
 
     const reposRes = await fetch(
       `https://api.github.com/users/${username}/repos?per_page=100`,
-      { headers, next: { revalidate: 3600 } }
+      { headers: headersObj, next: { revalidate: 3600 } }
     );
     if (!reposRes.ok) throw new Error("Failed to fetch repos");
     const repos = await reposRes.json();
