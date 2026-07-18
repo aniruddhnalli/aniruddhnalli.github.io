@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #22c55e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Use font-mono globally in layout.tsx but set default here too */
+  font-family: var(--font-mono), monospace;
+}
